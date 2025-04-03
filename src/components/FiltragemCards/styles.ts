@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import { Props } from  './index'
 
+type Props = {
+    ativo: boolean
+}
 
-//criei um novo tipo para omitir do tipo Props normal as propriedades contador e legenda
-type PropsSemLegendaEContador = Omit<Props, 'contador' | 'legenda'>
-
-export const Card = styled.div<PropsSemLegendaEContador>`
+export const Card = styled.div<Props>`
     padding: 8px;
     border: 1px solid ${(props) => (props.ativo ? '#1e98ff' : '#a1a1a1')};
     background-color: ${(props) => (props.ativo ? '#fff' : '#fcfcfc')};

@@ -1,14 +1,14 @@
 class Contato {
     titulo: string
     favorito: boolean
-    numero: number
+    numero: string
     email: string
     id: number
 
     constructor(
         titulo: string, 
         favorito: boolean, 
-        numero: number, 
+        numero: string, 
         email: string, 
         id: number
     ) {

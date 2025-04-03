@@ -1,23 +1,35 @@
+import { useDispatch, useSelector } from "react-redux"
 import FiltragemCards from "../../components/FiltragemCards"
 import * as S from './styles'
+import { RootReducer } from "../../store"
+import { alterarTermo } from "../../store/reducers/filtro"
 
-const BarraLateral = () => (
-    <S.Aside>
-        <div>
-            <S.CampoPesquisa type="text" placeholder="Buscar" />
+const BarraLateral = () => {
+    const dispatch = useDispatch()
+    const { termo } = useSelector((state: RootReducer) => state.filtro)
+
+    return(
+        <S.Aside>
             <div>
-                <FiltragemCards 
-                    legenda="Contatos"
-                    contador={5}
+                <S.CampoPesquisa 
+                    type="text" 
+                    placeholder="Buscar" 
+                    value={termo}
+                    onChange={evento => dispatch(alterarTermo(evento.target.value))}
                 />
-                <FiltragemCards 
-                    legenda="Favoritos"
-                    contador={3}
-                    ativo
-                />
+                <div>
+                    <FiltragemCards 
+                        criterio="todas"
+                        legenda="Contatos"
+                    />
+                    <FiltragemCards 
+                        criterio="favorito"
+                        legenda="Favoritos"
+                    />
+                </div>
             </div>
-        </div>
-    </S.Aside>
-)
+        </S.Aside>
+    )
+}
 
 export default BarraLateral
