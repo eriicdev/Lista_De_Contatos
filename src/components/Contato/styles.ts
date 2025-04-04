@@ -91,3 +91,20 @@ export const BotaoSalvar = styled(Botoes)`
 export const BotaoCancelarRemover = styled(Botoes)`
     background-color: ${variaveis.vermelho};
 `
+
+export const EditarFavorito = styled.span`
+    font-family: 'Roboto Mono', monospace;
+    line-height: 12px;
+    margin-left: 8px;
+    color: #003366;
+    font-weight: 900;
+`
+
+export const ContainerEditaFavorito = styled.label`
+    background-color: #e8f1f2;
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+`

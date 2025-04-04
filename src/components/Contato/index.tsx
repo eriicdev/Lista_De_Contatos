@@ -10,7 +10,7 @@ type Props = ContatoClass
 
 const Contato = ({
     email: emailOriginal, 
-    favorito, 
+    favorito: favoritoOriginal, 
     numero: numeroOriginal, 
     titulo,
     id
@@ -19,6 +19,7 @@ const Contato = ({
     const [estaeditando, setEstaeditando] = useState(false)
     const [email, setEmail] = useState('')
     const [numero, setNumero] = useState('')
+    const [favorito, setFavorito] = useState(false)
     
     useEffect(() => {
         if (emailOriginal.length > 0) {
@@ -32,19 +33,31 @@ const Contato = ({
         }
     }, [numeroOriginal])
 
+    useEffect(() => {
+        setFavorito(favoritoOriginal)
+    }, [favoritoOriginal])
+
     function cancelarEdicao() {
         setEstaeditando(false)
         setEmail(emailOriginal)
         setNumero(numeroOriginal)
+        setFavorito(favoritoOriginal)
     }
 
     return (
         <S.Card>
             <S.TituloETag_D_flex>
                 <S.Titulo>{titulo}</S.Titulo>
-                    {favorito ? (
+                    {estaeditando ? (
+                        <S.ContainerEditaFavorito>
+                            <input type="checkbox" 
+                            checked={favorito}
+                            onChange={(e) => setFavorito(e.target.checked)}/>
+                            <S.EditarFavorito>Favoritar</S.EditarFavorito>
+                        </S.ContainerEditaFavorito>
+                    ): favorito ? (
                         <S.TagFavorito>⭐ Favorito</S.TagFavorito>
-                    ) : (
+                    ): (
                         <S.TagNaoFavorito>Não Favoritado</S.TagNaoFavorito>
                     )}
             </S.TituloETag_D_flex>
