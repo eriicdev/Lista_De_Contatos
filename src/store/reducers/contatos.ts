@@ -6,25 +6,25 @@ const contatosSlice = createSlice({
     initialState: {
         itens: [
             new Contato(
+                1,
                 'Pai', 
                 true, 
                 '988765432', 
                 'contato.pai@gmail.com', 
-                1
             ),
             new Contato(
+                2,
                 'Mãe', 
                 true, 
                 '988765544', 
                 'contato.mae@gmail.com', 
-                2
             ),
             new Contato(
+                3,
                 'Tio', 
                 false, 
                 '665165432', 
                 'contato.tio@gmail.com', 
-                3
             )
         ]
     },
@@ -42,10 +42,22 @@ const contatosSlice = createSlice({
             if (indexDoContato >= 0) {
                 state.itens[indexDoContato] = action.payload
             }
+        },
+        cadastrar: (state, action: PayloadAction<Contato>) => {
+            const contatoJaExiste = state.itens.find(
+                (contato) => 
+                    contato.titulo.toLocaleLowerCase() === action.payload.titulo.toLocaleLowerCase()
+            )
+
+            if (contatoJaExiste) {
+                alert('Este contato já está adicionado a sua lista')
+            } else {
+                state.itens.push(action.payload)
+            }
         }
     } 
 })
 
-export const { remover, editar } = contatosSlice.actions
+export const { remover, editar, cadastrar} = contatosSlice.actions
 
 export default contatosSlice.reducer

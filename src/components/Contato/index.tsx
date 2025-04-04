@@ -47,7 +47,10 @@ const Contato = ({
     return (
         <S.Card>
             <S.TituloETag_D_flex>
-                <S.Titulo>{titulo}</S.Titulo>
+                <S.Titulo>
+                    {estaeditando ? <em>Editando: </em>: ''}
+                    {titulo}
+                </S.Titulo>
                     {estaeditando ? (
                         <S.ContainerEditaFavorito>
                             <input type="checkbox" 
