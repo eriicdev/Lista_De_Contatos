@@ -29,6 +29,11 @@ const Formulario = () => {
         )
 
         dispatch(cadastrar(novoContato))
+
+        setTitulo('')
+        setfavorito(false)
+        setNumero('')
+        setemail('')
     }
     
     return (
